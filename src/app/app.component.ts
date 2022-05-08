@@ -28,6 +28,7 @@ export class AppComponent {
   }
   completato(){
     this.todos.pop()
+    console.log();
     }
 
 aggiungi(){

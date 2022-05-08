@@ -1,23 +1,56 @@
-<div style=" background-color: black;height: 20vh; color: white; text-align: center;"><h1 style="width:30vw;margin-bottom:20px;margin: auto; border: solid rgb(255, 255, 255) 1px;">TODO LIST</h1>
-  <a style="color: white;text-decoration: none;" href="">Aggiunti</a>&nbsp;-
-  <a style="color: white;text-decoration: none;" href="">Completati</a>
+<div style=" background-color: black;height: 20vh; text-align: center;">
+    <h1
+        style="width:30vw;margin-bottom:20px;margin: auto; border-radius:10px;margin-bottom: 31px; background-color:white;border: solid rgb(255, 255, 255) 1px;">TODO LIST</h1>
+    <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}"
+        style="color: rgb(0, 0, 0);text-decoration: none;border-radius: 15px; background-color: white; border:solid white 3px">Aggiunti
+    </a>&nbsp;-
+    <a
+        routerLink="/app"
+        routerLinkActive="active"
+        style="color: black;text-decoration: none;border-radius: 15px; background-color: white; border:solid white 3px">Completati</a>
 </div>
 <br>
-<hr>
+    <hr>
 
+        <div class="input-group mb-3" style="margin: auto; width: 50vh;">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Inserisci To Do"
+                aria-label="Recipient's username"
+                aria-describedby="button-addon2"
+                [(ngModel)]="newTodo">
+                <button
+                    class="btn btn-outline-secondary btn-primary text-white"
+                    type="button"
+                    id="button-addon2"
+                    (click)="saveTodo()">Aggiungi</button>
+            </div>
 
-<div class="input-group mb-3" style="margin: auto; width: 50vh;">
-  <input type="text" class="form-control" placeholder="Inserisci To Do" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="newTodo">
-  <button class="btn btn-outline-secondary btn-primary text-white" type="button" id="button-addon2" (click)="saveTodo()">Aggiungi</button>
-</div>
+            <table class="table" style="margin: auto; width: 50vh;">
 
+                <tbody>
+                    <tr *ngFor="let todo of todos;let i=index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{todo.title}}</td>
+                        <td style="text-align: center">
+                            <button
+                                class="btn btn-outline-secondary btn-success text-right text-white"
+                                type="button"
+                                id="button-addon2"
+                                (click)="aggiungi()">completato</button>
+                        </td>
 
-<table class="table" style="margin: auto; width: 50vh;">
+                        <td style="text-align: center">
+                            <button
+                                class="btn btn-outline-secondary btn-danger text-right text-white"
+                                type="button"
+                                id="button-addon2"
+                                (click)="completato()">elimina</button>
+                        </td>
 
-  <tbody>
-    <tr *ngFor="let todo of todos;let i=index;">
-      <th scope="row">{{i+1}}</th>
-      <td>{{todo.title}}</td>
-      <td  style="background-color: rgb(32, 230, 32);text-align: center;color: white;">completato</td>
-      <td style="background-color: red;text-align: center;color: white;">elimina</td>
-    </tr>
+                    </tr>
+                    <router-outlet></router-outlet>

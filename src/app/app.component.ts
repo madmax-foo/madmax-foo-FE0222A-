@@ -10,9 +10,12 @@ import { Todo } from './Todo';
 export class AppComponent {
   todos : Todo[] = [];
   newTodo : string;
+  fatto : Todo[] = [];
 
   saveTodo(){
+
     if(this.newTodo){
+
       let todo = new Todo();
       todo.title = this.newTodo;
       todo.completed = true;
@@ -21,9 +24,23 @@ export class AppComponent {
     }else{
       alert('inserisci un task');
     }
-  }
-  completato(id:number){
-    this.todos[id].completed = !this.todos[id].completed;
 
   }
+  completato(){
+    this.todos.pop()
+    }
+
+aggiungi(){
+  if(this.newTodo){
+    let todo = new Todo();
+    todo.title = this.newTodo;
+    todo.completed = true;
+    this.fatto.push(todo);
+    this.newTodo = '';
+
+  }
+
+
+  }
+
 }
